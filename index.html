@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Allison J. Kibler — Learning & Organizational Development</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --warm-white: #FAF8F4;
+      --charcoal: #1C1C1C;
+      --terracotta: #C4622D;
+      --terracotta-light: #E07A4A;
+      --teal: #2A6B7C;
+      --teal-light: #3D8FA3;
+      --sand: #D9CEBC;
+      --muted: #7A7067;
+      --gold: #B8973A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--charcoal);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 4rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--terracotta); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--charcoal);
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.35s forwards;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--teal);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 3rem;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.65s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.8s forwards;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--terracotta);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--terracotta-light); transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-block;
+      border: 1.5px solid var(--charcoal);
+      color: var(--charcoal);
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn-ghost:hover { background: var(--charcoal); color: var(--cream); transform: translateY(-2px); }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg-block {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 100%;
+      background: var(--teal);
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-stats {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1s forwards;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 2rem 2.5rem;
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-decor {
+      position: absolute;
+      bottom: -2rem;
+      left: 4rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 12rem;
+      font-weight: 900;
+      color: rgba(196,98,45,0.07);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { padding: 7rem 5rem; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--charcoal);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ─── ABOUT / SPECIALTIES ─── */
+    #about {
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-content .section-header { margin-bottom: 2rem; }
+
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text strong { color: var(--terracotta); font-weight: 500; }
+
+    .specialties-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--teal);
+      margin: 2.5rem 0 1.2rem;
+    }
+
+    .tags-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      color: var(--charcoal);
+      padding: 0.4rem 0.9rem;
+    }
+
+    .tools-panel {
+      padding: 3rem;
+      background: var(--charcoal);
+      color: #fff;
+      height: fit-content;
+    }
+
+    .tools-panel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-bottom: 2rem;
+      color: var(--cream);
+    }
+
+    .tool-category {
+      margin-bottom: 1.8rem;
+    }
+
+    .tool-cat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta-light);
+      margin-bottom: 0.6rem;
+    }
+
+    .tool-list {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.9;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--cream); }
+
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.5rem; bottom: 0;
+      width: 1px;
+      background: var(--sand);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -3.4rem;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--terracotta);
+    }
+
+    .timeline-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--terracotta);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-company {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--teal);
+      margin-bottom: 0.9rem;
+    }
+
+    .timeline-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .timeline-bullets li {
+      font-size: 0.92rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .timeline-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--terracotta);
+      font-size: 0.8rem;
+    }
+
+    /* ─── PORTFOLIO ─── */
+    #work {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+
+    #work .section-title { color: var(--cream); }
+    #work .section-line { background: rgba(255,255,255,0.15); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      group: true;
+    }
+
+    .portfolio-card-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .card-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s ease;
+    }
+
+    .portfolio-card:hover .card-bg { transform: scale(1.04); }
+
+    .card-bg-1 { background: linear-gradient(135deg, #1a3d4a 0%, #2A6B7C 50%, #3D8FA3 100%); }
+    .card-bg-2 { background: linear-gradient(135deg, #3d1f0a 0%, #7a3810 50%, #C4622D 100%); }
+    .card-bg-3 { background: linear-gradient(135deg, #1a2230 0%, #2d3d55 50%, #415070 100%); }
+    .card-bg-4 { background: linear-gradient(135deg, #1c1c1c 0%, #3a3028 50%, #5a4d3c 100%); }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 55%);
+    }
+
+    .card-pattern {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      font-style: italic;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+    }
+
+    .card-content { position: relative; z-index: 2; }
+
+    .card-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.6rem;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      max-width: 320px;
+    }
+
+    .card-tag-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      padding: 0.3rem 0.7rem;
+    }
+
+    /* ─── AWARDS / EDUCATION ─── */
+    #credentials {
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+
+    .credentials-col {}
+
+    .cred-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .cred-item:last-child { border-bottom: none; }
+
+    .cred-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--terracotta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+
+    .cred-body {}
+
+    .cred-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--terracotta);
+      margin-bottom: 0.2rem;
+    }
+
+    .cred-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+
+    .cred-detail {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--terracotta);
+      color: #fff;
+      text-align: center;
+      padding: 7rem 5rem;
+    }
+
+    .contact-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .contact-title em { font-style: italic; opacity: 0.7; }
+
+    .contact-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      display: inline-block;
+      background: #fff;
+      color: var(--terracotta);
+      text-decoration: none;
+      padding: 0.9rem 2.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: transform 0.15s;
+    }
+
+    .btn-white:hover { transform: translateY(-2px); }
+
+    .btn-outline-white {
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      padding: 0.9rem 2.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.4);
+      padding: 2.5rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+    }
+
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { color: var(--terracotta-light); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 7rem 1.5rem 3rem; }
+      .hero-right { height: 280px; }
+      .hero-bg-block { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+      .hero-stats { flex-direction: row; }
+
+      #about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+      #experience { padding: 4rem 1.5rem; }
+
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .portfolio-card { aspect-ratio: 16/9; }
+
+      #credentials { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+      #contact { padding: 5rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="#" class="nav-logo">Allison J. Kibler</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Learning &amp; Organizational Development</p>
+      <h1 class="hero-name">Allison<br/><em>J. Kibler</em></h1>
+      <p class="hero-title">Instructional Designer &amp; L&amp;OD Strategist</p>
+      <p class="hero-bio">
+        Results-driven learning professional crafting interactive, memorable experiences that engage and inspire the diverse workforce of today. I believe learning should be timely, accessible, and deeply human.
+      </p>
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bg-block"></div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Years in L&amp;OD</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3K</div>
+          <div class="stat-label">LMS Users Managed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">ATD</div>
+          <div class="stat-label">BEST Award Recipient</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-decor">L</div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="about-content">
+      <div class="section-header">
+        <span class="section-tag">01 / About</span>
+        <h2 class="section-title">Designing learning<br/><em>that sticks</em></h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="about-text">
+        I'm a Denver-based Learning &amp; Organizational Development professional with a passion for curating <strong>interactive, memorable learning experiences</strong> that engage today's diverse workforce. From eLearning modules to live webinars, compliance programs to leadership development — I build content that drives real behavior change.
+      </p>
+      <p class="about-text">
+        My approach blends instructional design theory with modern media production, ensuring learners receive content that's not just informative, but genuinely <strong>inspiring and accessible</strong>. I've led LMS migrations, spearheaded bilingual content initiatives, and built programs that moved the needle on retention and compliance.
+      </p>
+
+      <p class="specialties-heading">Areas of Expertise</p>
+      <div class="tags-grid">
+        <span class="tag">Learning Experience Design</span>
+        <span class="tag">Adult Development</span>
+        <span class="tag">Employee Experience</span>
+        <span class="tag">Workforce Training</span>
+        <span class="tag">Software Enablement</span>
+        <span class="tag">Curriculum Curation</span>
+        <span class="tag">Research &amp; Development</span>
+        <span class="tag">Technical Writing</span>
+        <span class="tag">Project Management</span>
+        <span class="tag">Quality Assurance</span>
+        <span class="tag">Data Analysis</span>
+        <span class="tag">LMS Administration</span>
+      </div>
+    </div>
+
+    <div class="tools-panel">
+      <p class="tools-panel-title">Tools &amp; Technologies</p>
+      <div class="tool-category">
+        <p class="tool-cat-label">Authoring</p>
+        <p class="tool-list">Articulate 360 (Storyline, Rise)</p>
+      </div>
+      <div class="tool-category">
+        <p class="tool-cat-label">Adobe Creative Suite</p>
+        <p class="tool-list">InDesign · Premiere Pro<br/>Photoshop · Audition<br/>Illustrator · XD · Adobe Express</p>
+      </div>
+      <div class="tool-category">
+        <p class="tool-cat-label">Microsoft 365</p>
+        <p class="tool-list">Full Office Suite · SharePoint</p>
+      </div>
+      <div class="tool-category">
+        <p class="tool-cat-label">LMS Platforms</p>
+        <p class="tool-list">UKG Pro Learning · Wisetail</p>
+      </div>
+      <div class="tool-category">
+        <p class="tool-cat-label">Project Management</p>
+        <p class="tool-list">Asana · Trello</p>
+      </div>
+      <div class="tool-category">
+        <p class="tool-cat-label">Design &amp; Prototyping</p>
+        <p class="tool-list">Figma · Canva</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXPERIENCE ─── -->
+  <section id="experience">
+    <div class="section-header">
+      <span class="section-tag">02 / Experience</span>
+      <h2 class="section-title">Where I've made<br/><em>an impact</em></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">Oct 2023 — Dec 2025</p>
+        <p class="timeline-role">Instructional Designer</p>
+        <p class="timeline-company">Snooze, an AM Eatery</p>
+        <ul class="timeline-bullets">
+          <li>Enhanced restaurant operations through digital/print media, eLearning modules, and video production supporting restaurant ops, manager training, software enablement, safety, and compliance</li>
+          <li>Managed 3,000+ users across 70 locations in Wisetail LMS — updating content, UX, assignments, roles, permissions, tracking, and reporting</li>
+          <li>Facilitated webinars for leadership development, company culture and engagement, and training advisory focus groups</li>
+          <li>Spearheaded English-to-Spanish translation of core content to increase workforce accessibility</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">Jun 2016 — Dec 2022</p>
+        <p class="timeline-role">L&amp;OD Content Development Lead</p>
+        <p class="timeline-company">AIR Communities</p>
+        <ul class="timeline-bullets">
+          <li>Built a culture of learning aligned to company goals across Property Ops, Finance, Info Tech, Risk Management, and HR</li>
+          <li>Managed UKG Pro Learning LMS end-to-end: integration, content, dashboards, and user experience</li>
+          <li>Reduced 1st-year turnover by 5% through a revamped onboarding program with live webinars and 90-day success checklists</li>
+          <li>Increased company-wide compliance training completion rate by 10%, directly impacting annual ESG goals</li>
+          <li>Team achieved ATD BEST Award in 2020; company recognized as Denver Top Workplace several consecutive years</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">Jun 2012 — Jun 2016</p>
+        <p class="timeline-role">Freelance Instructional Designer</p>
+        <p class="timeline-company">Health & Human Services / Professional Development</p>
+        <ul class="timeline-bullets">
+          <li>Delivered learning systems design, storyboarding, script writing, and LMS administration for diverse clients</li>
+          <li>Clients included: Massachusetts Provider's Council, HealthStream, NAPPI International, Relias, Trilogy, CareLearning, and Aimco Apartment Homes</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">Jul 2010 — May 2012</p>
+        <p class="timeline-role">Course Developer</p>
+        <p class="timeline-company">Netsmart Technologies</p>
+        <ul class="timeline-bullets">
+          <li>Produced healthcare information technology training content to improve workflows and enhance staff digital capabilities</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">May 2008 — Jul 2010</p>
+        <p class="timeline-role">Marketing &amp; Communications Specialist</p>
+        <p class="timeline-company">University of South Florida</p>
+        <ul class="timeline-bullets">
+          <li>Analyzed online learning trends to enhance the online experience at USF; collaborated with faculty to convert courses to online and blended formats</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ─── -->
+  <section id="work" style="padding-left:0;padding-right:0;padding-top:7rem;padding-bottom:0;">
+    <div style="padding: 0 5rem 4rem;">
+      <div class="section-header">
+        <span class="section-tag" style="color: rgba(255,255,255,0.5);">03 / Work</span>
+        <h2 class="section-title" style="color:#fff;">Selected<br/><em style="color:var(--terracotta-light)">projects</em></h2>
+        <div class="section-line" style="background:rgba(255,255,255,0.15);"></div>
+      </div>
+    </div>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card">
+        <div class="card-bg card-bg-1"></div>
+        <div class="card-overlay"></div>
+        <div class="card-pattern">OE</div>
+        <div class="portfolio-card-inner">
+          <div class="card-content">
+            <p class="card-type">Benefits Communication · Digital Guide</p>
+            <h3 class="card-title">2024 Open Enrollment Guide</h3>
+            <p class="card-desc">A polished, interactive digital benefits guide for AIR Communities, featuring navigable sections, visual hierarchy, and accessible design across 30 pages for a multi-location workforce.</p>
+            <div class="card-tag-row">
+              <span class="card-tag">InDesign</span>
+              <span class="card-tag">Benefits Comms</span>
+              <span class="card-tag">Technical Writing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="card-bg card-bg-2"></div>
+        <div class="card-overlay"></div>
+        <div class="card-pattern">TM</div>
+        <div class="portfolio-card-inner">
+          <div class="card-content">
+            <p class="card-type">Software Enablement · Manager Guide</p>
+            <h3 class="card-title">Toast POS: Manager Training Guide</h3>
+            <p class="card-desc">A comprehensive, screenshot-rich operations guide enabling managers at 70+ restaurant locations to master the Toast POS platform — from onboarding staff to end-of-day procedures.</p>
+            <div class="card-tag-row">
+              <span class="card-tag">Software Enablement</span>
+              <span class="card-tag">Job Aids</span>
+              <span class="card-tag">Operations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="card-bg card-bg-3"></div>
+        <div class="card-overlay"></div>
+        <div class="card-pattern">LD</div>
+        <div class="portfolio-card-inner">
+          <div class="card-content">
+            <p class="card-type">Leadership Development · eLearning Program</p>
+            <h3 class="card-title">Blended Leadership Curriculum</h3>
+            <p class="card-desc">Designed and facilitated a blended-learning leadership and business acumen program that increased employee engagement and supported career mobility across a 70-location organization.</p>
+            <div class="card-tag-row">
+              <span class="card-tag">Articulate Rise</span>
+              <span class="card-tag">Facilitation</span>
+              <span class="card-tag">Blended Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="card-bg card-bg-4"></div>
+        <div class="card-overlay"></div>
+        <div class="card-pattern">ES</div>
+        <div class="portfolio-card-inner">
+          <div class="card-content">
+            <p class="card-type">Onboarding · Multilingual Initiative</p>
+            <h3 class="card-title">Bilingual Onboarding Revamp</h3>
+            <p class="card-desc">Spearheaded English-to-Spanish translation of core onboarding content at Snooze, increasing accessibility for a diverse workforce and contributing to a 5% reduction in 1st-year turnover.</p>
+            <div class="card-tag-row">
+              <span class="card-tag">Accessibility</span>
+              <span class="card-tag">Translation</span>
+              <span class="card-tag">Wisetail LMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CREDENTIALS ─── -->
+  <section id="credentials">
+    <div class="credentials-col">
+      <div class="section-header">
+        <span class="section-tag">04 / Education</span>
+        <h2 class="section-title">Academic<br/><em>foundation</em></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="cred-item">
+        <div class="cred-icon">M</div>
+        <div class="cred-body">
+          <p class="cred-label">Graduate Degree</p>
+          <p class="cred-title">M.Ed., Curriculum &amp; Instruction</p>
+          <p class="cred-detail">University of South Florida · 2010</p>
+        </div>
+      </div>
+
+      <div class="cred-item">
+        <div class="cred-icon">B</div>
+        <div class="cred-body">
+          <p class="cred-label">Undergraduate Degree</p>
+          <p class="cred-title">B.A., Communication Sciences &amp; Disorders</p>
+          <p class="cred-detail">University of Florida · 2004</p>
+        </div>
+      </div>
+
+      <div class="cred-item">
+        <div class="cred-icon" style="background:var(--gold);">✦</div>
+        <div class="cred-body">
+          <p class="cred-label">Professional Certificate</p>
+          <p class="cred-title">Essential Skills in Adobe Premiere Pro</p>
+          <p class="cred-detail">2025 Professional Certificate</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="credentials-col">
+      <div class="section-header">
+        <span class="section-tag">05 / Recognition</span>
+        <h2 class="section-title">Awards &amp;<br/><em>achievements</em></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="cred-item">
+        <div class="cred-icon" style="background:var(--teal);">★</div>
+        <div class="cred-body">
+          <p class="cred-label">Industry Award</p>
+          <p class="cred-title">ATD BEST Award</p>
+          <p class="cred-detail">AIR Communities Team · 2020 — Awarded to organizations demonstrating excellence in employee learning and development.</p>
+        </div>
+      </div>
+
+      <div class="cred-item">
+        <div class="cred-icon" style="background:var(--teal);">⊙</div>
+        <div class="cred-body">
+          <p class="cred-label">Employer Recognition</p>
+          <p class="cred-title">Denver Top Workplace</p>
+          <p class="cred-detail">AIR Communities · Multiple consecutive years — contribution to culture and L&amp;OD programs recognized as a key driver.</p>
+        </div>
+      </div>
+
+      <div class="cred-item">
+        <div class="cred-icon" style="background:var(--charcoal);">%</div>
+        <div class="cred-body">
+          <p class="cred-label">Impact Metric</p>
+          <p class="cred-title">+10% Compliance Completion Rate</p>
+          <p class="cred-detail">Redesigned compliance training delivery, tracking, and reporting — directly impacting annual company ESG reporting goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <p class="contact-eyebrow">Let's Connect</p>
+    <h2 class="contact-title">Ready to build<br/><em>something great?</em></h2>
+    <p class="contact-sub">Whether you're looking for a strategic L&amp;OD partner, a skilled instructional designer, or a creative collaborator — I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:allisonkibler@yahoo.com" class="btn-white">Send an Email</a>
+      <a href="https://linkedin.com/in/akibler" target="_blank" class="btn-outline-white">LinkedIn Profile</a>
+      <a href="tel:7202520544" class="btn-outline-white">720.252.0544</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <span>© 2025 Allison J. Kibler — Learning &amp; Organizational Development</span>
+    <span>Denver, CO · <a href="mailto:allisonkibler@yahoo.com">allisonkibler@yahoo.com</a></span>
+  </footer>
+
+  <script>
+    // Scroll-triggered timeline animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 120);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
